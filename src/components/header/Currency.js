@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { getCurrencies } from "../../Graphql/queries";
-import client from "../../Graphql/apolloClient";
+import { getCurrencies } from "../../Services/queries";
+import client from "../../Services/apolloClient";
 import { connect } from "react-redux";
-import { sendCurrency } from "../../actions";
+import { sendCurrency } from "../../Redux/actions";
 import { CurrencySelect,Button } from "./styles/style-nav";
 import { ReactComponent as DownArrow } from "./svg/down.svg";
 import { ReactComponent as UpArrow } from "./svg/up.svg";

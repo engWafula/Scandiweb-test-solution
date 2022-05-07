@@ -142,7 +142,7 @@ export const CartAndCurrency = styled.div`
     padding:20px;
     width:150px;
     height:30px;
-    right:30px;
+    right:5px;
     top:35px;
   }
 `;

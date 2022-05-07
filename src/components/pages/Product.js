@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import Attributes from "../attributes/Attributes";
+import parse from "html-react-parser";
 import Navbar from "../../components/header/Navbar";
-import getSymbolFromCurrency from "currency-symbol-map";
 import {
   AttributeGroup,
   AttributeGroupName,
@@ -18,11 +18,10 @@ import {
   DetailsContainer,
   Description,
 } from "../general-styles/styles";
-import { addToCart } from "../../actions";
+import { addToCart } from "../../Redux/actions";
 import Gallery from "../attributes/Gallery";
-import DOMPurify from "dompurify";
-import client from "../../Graphql/apolloClient";
-import { getItemsById } from "../../Graphql/queries";
+import client from "../../Services/apolloClient";
+import { getItemsById } from "../../Services/queries";
 
 class Product extends PureComponent {
   constructor(props) {
@@ -148,10 +147,9 @@ class Product extends PureComponent {
                   {item.inStock ? "add to cart" : "out of stock"}
                 </Button>
                 <Description
-                  dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(item.description),
-                  }}
-                ></Description>
+                >
+                   {parse(item.description)}
+                </Description>
               </DetailsContainer>
             </>
           )}

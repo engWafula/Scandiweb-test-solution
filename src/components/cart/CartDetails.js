@@ -2,8 +2,8 @@ import React, { PureComponent } from "react";
 import Navbar from "../header/Navbar";
 import { connect } from "react-redux";
 import Attributes from "../attributes/Attributes.js";
-import getSymbolFromCurrency from "currency-symbol-map";
-import { removeFromCart, addToCart, changeAttribute } from "../../actions";
+import { removeFromCart, addToCart, changeAttribute } from "../../Redux/actions";
+import TotalPrice from "./cart-overlay/modal/TotalPrice";
 import {
   AttributeGroup,
   AttributeGroupName,
@@ -11,7 +11,7 @@ import {
   AttributeButton,
   ProductPrice,
   ProductBrand
-
+ 
 } from "../general-styles/styles";
 import {
   CartItemActionsContainer,
@@ -22,6 +22,11 @@ import {
   Title,
   CartContainer,
   CartItemDetailsContainer,
+  Details,
+  Total,
+  Tax,
+  Order,
+  Quantity
 } from "./cart-styles";
 import CartGallery from "./CartGallery";
 
@@ -30,14 +35,21 @@ class CartDetails extends PureComponent {
     super(props);
     this.state = {
       item: [],
+      item:{}
     };
     this.handleRemove = this.handleRemove.bind(this);
     this.handleIncrease = this.handleIncrease.bind(this);
+    this.getTotalPrice = this.getTotalPrice.bind(this);
     this.saveAttribute = this.saveAttribute.bind(this);
   }
 
   componentDidMount() {
     this.setState({ item: this.props.cart });
+  }
+  componentDidMount() {
+    const { cart } = this.props;
+    const item = cart.find((item) => item);
+    this.setState({ item });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -62,8 +74,27 @@ class CartDetails extends PureComponent {
     this.props.change(attribute, item[itemID]);
   }
 
-  render() {
+  getTotalPrice(cart) {
     const { currency } = this.props;
+    const totalPrice = cart.reduce((total, curr) => {
+      const price = curr.item.prices[currency].amount * curr.quantity;
+      return (total += price);
+    }, 0);
+    return Math.round(totalPrice * 100) / 100;
+  }
+
+  totalItemCount(cart) {
+    return Object.values(cart).reduce((total, curr) => {
+      total += curr.quantity;
+      return total;
+    }, 0);
+  }
+
+  render() {
+    const { cart,currency,totalPrice } = this.props;
+    const totalItems = this.totalItemCount(cart);
+    const total = this.getTotalPrice(cart);
+    const { item } = this.state;
     return (
       <>
         <Navbar />
@@ -110,9 +141,19 @@ class CartDetails extends PureComponent {
 
                     <CartGallery images={item.item.gallery} />
                   </CartItemContainer>
+              
                 </div>
+            
               </>
+        
             ))}
+                <Details>
+                {item !== undefined && item.item && (<Tax>Tax 21%: {item.item.prices[currency].currency.symbol} 42.00</Tax>)}
+                    <Quantity>Quantity: {totalItems}</Quantity>
+                    {item !== undefined && item.item && ( 
+                    <Total>Total:              {item.item.prices[currency].currency.symbol} {Math.round(total * 100) / 100}  </Total>)}
+                    <Order>Order</Order>
+                  </Details>
         </CartContainer>
       </>
     );

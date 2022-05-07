@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import Attributes from "../../../attributes/Attributes";
 import FooterBtns from "./FooterBtns";
@@ -14,6 +14,7 @@ import {
   ModalContainer,
   CountControl,
   AttributesContainer,
+  FooterWrapper,
   AttributeGroup,
   AttrButton,
   AttributeGroupName,
@@ -25,10 +26,11 @@ import {
   removeFromCart,
   addToCart,
   changeAttribute,
-} from "../../../../actions";
-import getSymbolFromCurrency from "currency-symbol-map";
+} from "../../../../Redux/actions";
 
-class CartModal extends PureComponent {
+
+
+class CartModal extends Component {
   constructor(props) {
     super(props);
     this.getTotalPrice = this.getTotalPrice.bind(this);
@@ -81,13 +83,20 @@ class CartModal extends PureComponent {
     }, 0);
   }
 
+  handleCloseModal = (e) => {
+    if (e.key === "Escape" || e.target === e.currentTarget) {
+      this.props.onCloseModal();
+    }
+  };
+
   render() {
     const { cart, closeModal,currency } = this.props;
     const totalItems = this.totalItemCount(cart);
     const total = this.getTotalPrice(cart);
     return (
-      <>
-        <ModalContainer>
+      <div>
+        <ModalContainer onClick={this.handleCloseModal}>
+          
           <div>
             <CartName>My Bag,</CartName>
             &nbsp;
@@ -130,11 +139,13 @@ class CartModal extends PureComponent {
               </ItemContainer>
             ))}
             </Wrap>
+            <FooterWrapper>
           <TotalPrice totalPrice={Math.round(total * 100) / 100} />
 
           <FooterBtns closeModal={closeModal} />
+          </FooterWrapper>
         </ModalContainer>
-      </>
+      </div>
     );
   }
 }

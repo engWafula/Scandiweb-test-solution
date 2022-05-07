@@ -116,6 +116,13 @@ export const ProductContainer = styled.div`
   }
 `;
 
+
 export const Description = styled.div`
-  font-family: "Roboto";
+  margin-top: 40px;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 160%;
+  color: #1d1f22;
+  margin-right:150px;
 `;

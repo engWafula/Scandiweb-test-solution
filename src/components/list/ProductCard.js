@@ -15,7 +15,7 @@ import {
 } from "./list-style";
 
 import getSymbolFromCurrency from "currency-symbol-map";
-import { loadCurrentItem, addToCart } from "../../actions";
+import { loadCurrentItem, addToCart } from "../../Redux/actions";
 
 class ProductCard extends Component {
   constructor(props) {

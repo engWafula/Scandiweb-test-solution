@@ -4,9 +4,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ProductsContainer, Title } from "../list/list-style";
 import ProductCard from "../list/ProductCard";
-import client from "../../Graphql/apolloClient";
-import { sendProducts } from "../../actions";
-import { getItemsByCategory,  getAllProducts } from "../../Graphql/queries";
+import client from "../../Services/apolloClient";
+import { sendProducts } from "../../Redux/actions";
+import { getItemsByCategory,  getAllProducts } from "../../Services/queries";
 import Navbar from "../header/Navbar";
 
   class CategoryList extends Component {

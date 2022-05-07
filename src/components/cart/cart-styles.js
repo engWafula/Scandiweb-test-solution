@@ -115,8 +115,7 @@ export const CartItemCountShape = styled.div`
   padding: 7px;
   min-width: 20px;
   font-size: 14px;
-
-  height: 20px;
+  height: 25px;
   color: #1d1f22;
   background-color: #000000;
   display: flex;
@@ -142,6 +141,50 @@ export const ActionContainer = styled.div`
   gap: 2vw;
 `;
 
+
+export const Details = styled.div`
+margin-top:50px;
+`;
+export const ButtonCommon = styled.button`
+  width: 9vw;
+  height: 43px;
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 2vw;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  decoration: none;
+  transition: all 0.5s ease;
+  &:active {
+    transform: scale(0.95, 0.95);
+  }
+`;
+export const Order = styled(ButtonCommon)`
+  background-color: #52d67a;
+  color: #fff;
+  height: 43px;
+  border: none;
+  @media only screen and (max-width:480px){
+    width:100px;
+    padding:5px;
+   }
+`;
+export const Tax= styled.div`
+margin-bottom:10px;
+`
+export const Quantity= styled.div`
+margin-bottom:10px;
+`
+
+export const Total= styled.div`
+margin-bottom:10px;
+`
 export const LogoContainer = styled.div`
   margin: 0 auto;
   display: flex;
@@ -157,6 +200,7 @@ export const CartIconContainer = styled.div`
   height: 80px;
   position: relative;
   margin-left: 38px;
+  cursor:pointer;
   svg {
     width: 20px;
   }

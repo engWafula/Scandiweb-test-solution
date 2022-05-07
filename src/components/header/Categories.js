@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { StyledLink } from "../list/list-style";
-import { getCategories } from "../../Graphql/queries";
-import client from "../../Graphql/apolloClient";
+import { getCategories } from "../../Services/queries";
+import client from "../../Services/apolloClient";
 import { connect } from "react-redux";
-import { sendCategory, sendProducts } from "../../actions";
+import { sendCategory, sendProducts } from "../../Redux/actions";
 import { Container } from "./styles/style-categories";
 
 class Categories extends Component {

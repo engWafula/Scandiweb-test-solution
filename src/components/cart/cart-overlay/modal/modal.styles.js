@@ -10,22 +10,37 @@ export const ModalContainer = styled.div`
   width: 23vw;
   background-color: #fff;
   z-index: 7;
-  padding: 8px 1.1vw 1.3vw 1.1vw;
-  height:600px
+  padding: 8px 8px 8px 8px;
+  
 
   @media only screen and (max-width:480px){
-    padding:20px;
-    width:150px;
-    height:30px;
-    right:30px;
-    top:35px;
+    padding:50px;
+    width:300px;
+    height:700px;
+    right:18px;
+    top:50px;
   }
 `;
+export const FooterWrapper=styled.div`
+position: sticky;
+overflow: hidden;
+bottom: 1px;
+background-color: #fff;
+
+@media only screen and (max-width:480px){
+display:flex;
+flex-direction: column;
+}
+`
 
 export const ModalFooterContainer = styled.div`
   display: flex;
   width: 100%;
   gap: 1vw;
+  @media only screen and (max-width:480px){
+     gap:10px;
+     margin-bottom:80px;
+    }
 `;
 
 export const CartName = styled.span`
@@ -74,18 +89,30 @@ export const ButtonCommon = styled.button`
 `;
 
 export const ViewBagButton = styled(ButtonCommon)`
-  background-color: #fff;
-  border: 1px solid #1d1f22;
-  color: #1d1f22;
-  margin-right: 0.8vw;
-  text-decoration: none;
-  decoration: none;
+font-family: Raleway;
+font-weight: 600;
+font-size: 14px;
+line-height: 120%;
+width: 140px;
+height: 43px;
+color: #1d1f22;
+background-color: #ffffff;
+border: 1px solid #1d1f22;
+cursor: pointer;
+@media only screen and (max-width:480px){
+  width:100px;
+ }
 `;
 
 export const CheckOutButton = styled(ButtonCommon)`
   background-color: #52d67a;
   color: #fff;
+  height: 43px;
   border: none;
+  @media only screen and (max-width:480px){
+    width:100px;
+    padding:5px;
+   }
 `;
 
 export const SLink = styled(Link)`
@@ -223,6 +250,11 @@ export const TotalPriceContainer = styled.div`
   width: 20vw;
   justify-content: space-between;
   margin: 43px 0 35px 0;
+  @media only screen and (max-width:480px){
+    width:10vw;
+    margin:30px 0 30px 0;
+    flex-direction:row;
+   }
 `;
 
 export const TotalPriceTotal = styled.span`
@@ -230,12 +262,19 @@ export const TotalPriceTotal = styled.span`
   font-weight: 500;
   font-size: 16px;
   line-height: 18px;
+  @media only screen and (max-width:480px){
+  
+   }
 `;
 
 export const TotalPriceCost = styled.span`
   font-weight: 700;
   font-size: 16px;
   line-height: 25.6px;
+  @media only screen and (max-width:480px){
+  margin-left:50px;
+  margin-bottom:10px;
+  }
 `;
 
 export const Overlay = styled.div`
